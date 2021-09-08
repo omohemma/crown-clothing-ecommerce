@@ -3,8 +3,6 @@ import  MenuItem  from '../menu-item/menu-item.component';
 import './directory.styles.scss';
 import SECTION_DATA from "./directory.data.js";
 
-
-
 class Directory extends Component {
   constructor() {
     super();
