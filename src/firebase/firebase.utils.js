@@ -13,3 +13,14 @@ const config = {
 };
 
 firebase.initialize(config);
+
+export const auth = firebase.auth(); // Export Auth
+export const firestore = firebase.firestore(); // Export Firestore
+
+// Google Authentication
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({prompt: 'select account'});
+export const signInWithGoogle = () => auth.signInWithPopup();
+
+
+export default firebase;
