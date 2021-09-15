@@ -6,3 +6,7 @@ body {
    text-decoration: none;
    color:#000000
  }
+
+ *{
+     box-sizing: border-box;
+ }
