@@ -1,7 +1,7 @@
 import './App.css';
 import {Component} from "react";
 
-import { Route, Switch } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Homepage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
@@ -10,27 +10,32 @@ import {auth} from "./firebase/firebase.utils";
 
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
-      currentUser : null
+      currentUser: null
     }
   }
 
-  componentDidMount(){
-    auth.onAuthStateChanged(user => {
-      this.setState({currentUser : user});
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({currentUser: user});
       console.log(user)
     })
-
-
   }
 
-  render(){
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+
+  render() {
     return (
       <div className="App">
-        <Header />
+        <Header/>
         <Switch>
           <Route exact path="/" component={Homepage}></Route>
           <Route exact path="/shop" component={ShopPage}></Route>
