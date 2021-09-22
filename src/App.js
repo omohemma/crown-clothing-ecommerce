@@ -22,9 +22,24 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
-      // this.setState({currentUser: user});
-     createUserProfileDocument(user)
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
+      // If User Is Logged In and UserAuth is Not Null
+      if(userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
+
+        //Sync For Real Time Data From Firestore DB
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser : {
+            id: snapShot.id, // user Id From Reference
+            ...snapShot.data() //Get User Data
+            }
+          }, () =>  console.log(this.state))
+        })
+      }else{
+        this.setState({currentUser : userAuth});
+      }
+
     })
   }
   componentWillUnmount() {
