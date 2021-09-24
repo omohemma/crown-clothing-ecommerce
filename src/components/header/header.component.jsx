@@ -33,8 +33,9 @@ const Header = ({ currentUser }) => (
 );
 
 // Getting State In child Component Directly Using Redux Connect
+// state is the root reducer that has access to other specific reducers
 const mapStateToProps = (state) => ({
-  currentUser: this.state.currentUser,
+  currentUser: state.user.currentUser,
 });
 
 //HOC - Higher Order Component  is a function that take a component as am argument and return a new souped up component
