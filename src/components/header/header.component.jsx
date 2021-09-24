@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import {auth} from '../../firebase/firebase.utils'
+import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
 
 import './header.styles.scss';
 
-const Header = ({currentUser}) => (
+const Header = ({ currentUser }) => (
   <div className="header">
     <div className="logo-container">
       <Link to="/">
@@ -18,16 +19,23 @@ const Header = ({currentUser}) => (
       <Link className="option" to="/shop">
         CONTACT
       </Link>
-      {
-        currentUser ?
-          <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
-          :
-          <Link className="option" to="/sign-in">
-            SIGN IN
-          </Link>
-      }
+      {currentUser ? (
+        <div className="option" onClick={() => auth.signOut()}>
+          SIGN OUT
+        </div>
+      ) : (
+        <Link className="option" to="/sign-in">
+          SIGN IN
+        </Link>
+      )}
     </div>
   </div>
 );
 
-export default Header;
+// Getting State In child Component Directly Using Redux Connect
+const mapStateToProps = (state) => ({
+  currentUser: this.state.currentUser,
+});
+
+//HOC - Higher Order Component  is a function that take a component as am argument and return a new souped up component
+export default connect(mapStateToProps)(Header);

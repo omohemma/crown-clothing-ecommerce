@@ -17,5 +17,5 @@ const MenuItem = ({ title, imageUrl, size, history, match, linkUrl }) => (
   </div>
 );
 
-
+// HOC
  export default withRouter(MenuItem);
