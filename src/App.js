@@ -11,18 +11,13 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentUser: null,
-    };
-  }
-
   // Sync Google Account SIgn-0n To App
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    // destructure this.props
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       // If User Is Logged In and UserAuth is Not Null
       if (userAuth) {
@@ -30,18 +25,13 @@ class App extends Component {
 
         //Sync For Real Time Data From Firestore DB
         userRef.onSnapshot((snapShot) => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id, // user Id From Reference
-                ...snapShot.data(), //Get User Data
-              },
-            },
-            () => console.log(this.state)
-          );
+          setCurrentUser({
+            id: snapShot.id, // user Id From Reference
+            ...snapShot.data(), //Get User Data
+          });
         });
       } else {
-        this.setState({ currentUser: userAuth });
+        setCurrentUser(userAuth);
       }
     });
   }
