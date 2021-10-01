@@ -6,6 +6,9 @@ import CartIcon from '../cart-icon/cart-icon.component';
 
 import './header.styles.scss';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
@@ -39,9 +42,10 @@ const Header = ({ currentUser, hidden }) => (
 
 // Getting State In child Component Directly Using Redux Connect
 // state is the root reducer that has access to other specific reducers
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// Use createStructuredSelector to simplify adding state every time
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 //HOC - Higher Order Component  is a function that take a component as am argument and return a new souped up component
