@@ -4,7 +4,8 @@ import CustomButton from '../custom-button/custom-button.component';
 
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 import './cart-dropdown.styles.scss';
-const CartDropdown = ({ cartItems }) => (
+import { withRouter } from 'react-router';
+const CartDropdown = ({ cartItems, history }) => (
   <div className="cart-dropdown">
     <div className="cart-items">
       {cartItems.length ? (
@@ -14,7 +15,9 @@ const CartDropdown = ({ cartItems }) => (
       )}
     </div>
 
-    <CustomButton>GO TO CHECKOUT</CustomButton>
+    <CustomButton onClick={() => history.push('/checkout')}>
+      GO TO CHECKOUT
+    </CustomButton>
   </div>
 );
 
@@ -22,4 +25,4 @@ const mapStateToProps = (state) => ({
   cartItems: selectCartItems(state),
 });
 
-export default connect(mapStateToProps)(CartDropdown);
+export default withRouter(connect(mapStateToProps)(CartDropdown));
