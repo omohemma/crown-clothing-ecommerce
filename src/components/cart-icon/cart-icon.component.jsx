@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
+// Reselect Without createStructuredSelector
 const mapStateToProps = (state) => ({
   itemsCount: selectCartItemsCount(state),
 });
