@@ -15,7 +15,7 @@ const CartDropdown = ({ cartItems, history }) => (
       )}
     </div>
 
-    <CustomButton onClick={() => history.push('/checkout')}>
+    <CustomButton onClick={() => history.push("/checkout")}>
       GO TO CHECKOUT
     </CustomButton>
   </div>
