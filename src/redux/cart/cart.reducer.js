@@ -18,7 +18,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: groupCartItems(state.cartItems, action.payload),
       };
-    case CartActionTypes.REMOVE_ITEM_FROM_CART:
+    case CartActionTypes.REMOVE_ITEMS_FROM_CART:
       return {
         ...state,
         cartItems: state.cartItems.filter(
