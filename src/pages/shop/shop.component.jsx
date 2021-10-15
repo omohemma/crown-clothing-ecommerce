@@ -1,12 +1,12 @@
 import { Route } from 'react-router';
 import CollectionOverview from '../../components/collection-overview/collection-overview.component';
-import CategoryPage from '../category/category.component';
+import CollectionPage from '../collection/collection.component';
 
 const ShopPage = ({ match }) => (
   <div>
     {/*Conditionally Render Component Based on matched path*/}
     <Route exact path={`${match.path}`} component={CollectionOverview} />
-    <Route path={`${match.path}/:categoryId`} render={CategoryPage} />
+    <Route path={`${match.path}/:collectionId`} render={CollectionPage} />
   </div>
 );
 
