@@ -6,7 +6,7 @@ const ShopPage = ({ match }) => (
   <div>
     {/*Conditionally Render Component Based on matched path*/}
     <Route exact path={`${match.path}`} component={CollectionOverview} />
-    <Route path={`${match.path}/:collectionId`} render={CollectionPage} />
+    <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
   </div>
 );
 
