@@ -8,8 +8,7 @@ export const selectShopCollections = createSelector(
 );
 
 export const selectShopCollection = (collectionUrlParam) =>
-  createSelector([selectShopCollections], (collections) =>
-    collections.find(
-      (collection) => collection.routeName === collectionUrlParam
-    )
+  createSelector(
+    [selectShopCollections],
+    (collections) => collections[collectionUrlParam] // Data Normalization When It is Needed To Find a Single Element In an Array of Objects
   );
