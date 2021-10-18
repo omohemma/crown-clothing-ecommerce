@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import PaystackCheckoutButton from '../../components/paystack-checkout-button/paystack-checkout-button';
 import {
   selectCartItems,
   selectCartTotal,
@@ -32,6 +33,10 @@ const Checkout = ({ cartItems, total }) => (
     <div className="total">
       <span>TOTAL : ${total}</span>
     </div>
+
+    {/** Checkout Button */}
+
+    <PaystackCheckoutButton price={total} />
   </div>
 );
 
