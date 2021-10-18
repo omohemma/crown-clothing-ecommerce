@@ -21,7 +21,7 @@ const PaystackCheckoutButton = ({ price }) => {
 
   const componentProps = {
     ...config,
-    text: 'Paystack Button Implementation',
+    text: 'Pay Now',
     onSuccess: (reference) => onSuccess(reference),
     onClose: onClose,
   };
